@@ -1,0 +1,45 @@
+<div class="main">
+    <mat-toolbar class="nav-bar" style = 'background-color: rgb(243,106,38);'>
+    
+        <span [routerLink]="['/post-feed']">Revature Social Media</span>
+        <span class="spacer"></span>
+        <button mat-button (click)="home();">Home</button>
+        <button mat-button (click)="logout();">Logout</button>
+        <mat-icon id = "darkbutton" (click) = "DarkToggle()">brightness_6</mat-icon>
+        
+    </mat-toolbar>
+        
+    <h1 *ngIf="user">{{user.firstName}} {{user.lastName}}</h1>
+    <div class="profile">
+        
+
+        <div class="greeting">
+            <h2 *ngIf="user" class="my-3">{{user.bio}}</h2> 
+            
+            
+        </div>
+        <table *ngIf="user" class="profile-table">
+            <tr>
+                <th> First Name </th>
+                <th> {{user.firstName}}</th>
+            </tr>
+            <tr>
+                <th> Last Name</th>
+                <th> {{user.lastName}}</th>
+            </tr>
+            <tr>
+                <th> Email</th>
+                <th> {{user.email}}</th>
+            </tr>
+        </table>
+        <button mat-raised-button id ="loadposts" (click) = "loadPosts()"> Load User's Posts </button>
+       
+        
+    </div>
+    <div id="post-feed" *ngFor="let post of foundposts">
+        <app-post [post]="post"></app-post>
+    </div>
+    
+
+      
+   
